@@ -3,6 +3,7 @@ const container = document.getElementById('container')
 const headerTitle = document.createElement('h1')
 
 const btnCreateNewGrid = document.createElement('button')
+
 const btnResetGrid = document.createElement('button')
 
 const gridContainer = document.createElement('div')
@@ -28,6 +29,37 @@ container.append(headerTitle, btnCreateNewGrid, btnResetGrid, gridContainer)
 gridContainer.style.width=`${gridItemSize}px`
 
 gridContainer.style.height=`${gridItemSize}px`
+
+btnCreateNewGrid.addEventListener('click', ()=>newGridHandler())
+container.append(headerTitle, btnCreateNewGrid, gridContainer)
+
+function newGridHandler()
+{
+    let newGrid = parseInt(prompt('Enter a new value between 1 - 100:'))
+    if(isNaN(newGrid))
+        {
+            alert('ERROR! Invalid number. \nPlease try again!')
+            newGridHandler()
+        }
+    else 
+        {
+            if(newGrid > 100)
+                {
+                    alert('It cannot be higher than 100. \nPlease try again.')
+                    newGridHandler()
+                }
+            else 
+                {
+                    updateNewGrid(newGrid,gridItemSize / newGrid)
+                }
+        }
+        
+}
+
+function updateNewGrid(gridNumber, gridSize)
+{
+    
+}
 
 for (let index = 0; index < (gridNumber * gridNumber); index++) 
     {
