@@ -58,7 +58,7 @@ function newGridHandler()
 
 function updateNewGrid(gridNumber, gridSize)
 {
-    
+   clearGrid() 
 }
 
 for (let index = 0; index < (gridNumber * gridNumber); index++) 
@@ -69,3 +69,10 @@ for (let index = 0; index < (gridNumber * gridNumber); index++)
         gridBox.style.boxShadow = '0 0 0px 0.5px black'
         gridContainer.append(gridBox)
     }
+
+
+function clearGrid()
+{
+    gridContainer.replaceChildren()
+}
+
