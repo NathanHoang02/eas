@@ -1,0 +1,15 @@
+#container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.gridContainer
+{
+    display: flex; 
+    flex-wrap: wrap;
+    margin-top: 40px;
+    border:1px solid black;
+}
