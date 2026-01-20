@@ -6,9 +6,13 @@ const btnCreateNewGrid = document.createElement('button')
 
 const btnResetGrid = document.createElement('button')
 
+const btnContainer = document.createElement('div')
+
 const gridContainer = document.createElement('div')
 
 const gridItemSize = 580
+
+const colorPallets = ['blue','navy','purple','lightblue']
 
 let gridNumber = 20
 
@@ -17,6 +21,8 @@ let gridSize = gridItemSize / gridNumber
 headerTitle.setAttribute('class','title')
 
 gridContainer.setAttribute('class','gridContainer')
+
+btnContainer.setAttribute('class','btnContainer')
 
 headerTitle.innerText='Etch A Sketch'
 
@@ -31,7 +37,19 @@ gridContainer.style.width=`${gridItemSize}px`
 gridContainer.style.height=`${gridItemSize}px`
 
 btnCreateNewGrid.addEventListener('click', ()=>newGridHandler())
-container.append(headerTitle, btnCreateNewGrid, gridContainer)
+
+btnResetGrid.addEventListener('click', ()=>btnResetGridColor())
+
+btnContainer.append(btnCreateNewGrid, btnResetGrid)
+
+container.append(headerTitle, btnContainer, gridContainer)
+
+updateNewGrid(gridNumber, gridSize)
+
+function updateNewGrid(gridNumber, gridSize)
+{
+   clearGrid() 
+}
 
 function newGridHandler()
 {
@@ -56,17 +74,24 @@ function newGridHandler()
         
 }
 
-function updateNewGrid(gridNumber, gridSize)
-{
-   clearGrid() 
-}
-
 for (let index = 0; index < (gridNumber * gridNumber); index++) 
     {
         const gridBox = document.createElement('div')
         gridBox.style.width = `${gridSize}px`
         gridBox.style.height = `${gridSize}px`
-        gridBox.style.boxShadow = '0 0 0px 0.5px black'
+        gridBox.style.boxShadow = '0 0 0px 0.5px black' 
+        gridBox.addEventListener('pointerenter',()=>
+        {
+        gridBox.style.backgroundColor= colorPallets[Math.floor(Math.random()*colorPallets.length)]
+        })
+        gridBox.addEventListener('mouseenter',()=>
+        {
+            gridBox.style.backgroundColor= colorPallets[Math.floor(Math.random()*colorPallets.length)]
+        })
+        gridBox.addEventListener('touchstart',()=>
+        {
+            gridBox.style.backgroundColor= colorPallets[Math.floor(Math.random()*colorPallets.length)]
+        })
         gridContainer.append(gridBox)
     }
 
@@ -74,5 +99,12 @@ for (let index = 0; index < (gridNumber * gridNumber); index++)
 function clearGrid()
 {
     gridContainer.replaceChildren()
+}
+
+function resetGridColor()
+{
+    let gridChildren = gridContainer.childNodes
+
+    gridChildren.forEach(child=>child.style.background='transparent')
 }
 
