@@ -18,38 +18,37 @@ let gridNumber = 20
 
 let gridSize = gridItemSize / gridNumber
 
+// Class attributes
 headerTitle.setAttribute('class','title')
 
 gridContainer.setAttribute('class','gridContainer')
 
 btnContainer.setAttribute('class','btnContainer')
 
+// Text element values
 headerTitle.innerText='Etch A Sketch'
 
 btnCreateNewGrid.textContent='New Grid'
 
 btnResetGrid.textContent='Reset Grid'
 
-container.append(headerTitle, btnCreateNewGrid, btnResetGrid, gridContainer)
-
+// Grid containers
 gridContainer.style.width=`${gridItemSize}px`
 
 gridContainer.style.height=`${gridItemSize}px`
 
+// Listeners
 btnCreateNewGrid.addEventListener('click', ()=>newGridHandler())
 
-btnResetGrid.addEventListener('click', ()=>btnResetGridColor())
+btnResetGrid.addEventListener('click', ()=>resetGridColor())
 
+// Adding to container
 btnContainer.append(btnCreateNewGrid, btnResetGrid)
 
 container.append(headerTitle, btnContainer, gridContainer)
 
+// Initilalization
 updateNewGrid(gridNumber, gridSize)
-
-function updateNewGrid(gridNumber, gridSize)
-{
-   clearGrid() 
-}
 
 function newGridHandler()
 {
@@ -74,6 +73,10 @@ function newGridHandler()
         
 }
 
+function updateNewGrid(gridNumber, gridSize)
+{
+   clearGrid() 
+
 for (let index = 0; index < (gridNumber * gridNumber); index++) 
     {
         const gridBox = document.createElement('div')
@@ -94,7 +97,7 @@ for (let index = 0; index < (gridNumber * gridNumber); index++)
         })
         gridContainer.append(gridBox)
     }
-
+}
 
 function clearGrid()
 {
